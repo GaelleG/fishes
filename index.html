@@ -1,0 +1,92 @@
+<!DOCTYPE>
+<html>
+<head>
+  <title></title>
+  <style type="text/css">
+    .depth {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      overflow: hidden;
+    }
+    .depth:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0,123,255,.3);
+    }
+    .fish {
+      display: block;
+      position: absolute;
+      width: 5vw;
+      height: 5vw;
+      background-color: #000;
+    }
+    .depth .fish {
+      width: 4px;
+      height: 4px;
+    }
+    .depth +.depth .fish {
+      width: 7px;
+      height: 7px;
+    }
+    .depth + .depth + .depth .fish {
+      width: 10px;
+      height: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="depth">
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+  </div>
+  <div class="depth">
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+  </div>
+  <div class="depth">
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+  </div>
+  <script type="text/javascript">
+    var fishes = document.querySelectorAll('.fish');
+    function setRandomPosition(fish) {
+      fish.setAttribute('style', 'top: ' + Math.random() * 95 + 'vh; left: ' + Math.random() * 95 + 'vw;');
+    }
+    Array.prototype.slice.call(fishes).forEach(setRandomPosition);
+    setInterval(function () {Array.prototype.slice.call(fishes).forEach(setRandomPosition);}, 70);
+
+  </script>
+</body>
+</html>
