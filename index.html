@@ -3,6 +3,9 @@
 <head>
   <title></title>
   <style type="text/css">
+    body {
+      background-image: linear-gradient(to top, rgba(0,0,0,.6), transparent);
+    }
     .depth {
       position: absolute;
       top: 0;
@@ -24,21 +27,23 @@
     .fish {
       display: block;
       position: absolute;
-      width: 5vw;
-      height: 5vw;
-      background-color: #000;
+      background-color: rgba(0,0,0,.8);
+      border-radius: 50%;
     }
     .depth .fish {
       width: 4px;
       height: 4px;
+      box-shadow: 0 0 8px #000;
     }
     .depth +.depth .fish {
       width: 7px;
       height: 7px;
+      box-shadow: 0 0 5px #000;
     }
     .depth + .depth + .depth .fish {
       width: 10px;
       height: 10px;
+      box-shadow: 0 0 2px #000;
     }
   </style>
 </head>
