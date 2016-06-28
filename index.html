@@ -80,12 +80,50 @@
     <div class="fish"></div>
   </div>
   <script type="text/javascript">
-    var fishes = document.querySelectorAll('.fish');
-    function setRandomPosition(fish) {
-      fish.setAttribute('style', 'top: ' + Math.random() * 95 + 'vh; left: ' + Math.random() * 95 + 'vw;');
+    var depths = Array.prototype.slice.call(document.querySelectorAll('.depth'));
+    var sizes = [4, 7, 10];
+    var screen = {
+      width: window.innerWidth,
+      height: window.innerHeight
+    };
+    var fishes = [];
+    var fishesPositions = [];
+
+    function init() {
+      var els = [];
+      var position = {};
+      for(var depthIndex = 0, dephtNumber = depths.length; depthIndex < dephtNumber; depthIndex++) {
+        els = Array.prototype.slice.call(depths[depthIndex].querySelectorAll('.fish'));
+        fishesPositions.push([]);
+        for(var fishIndex = 0, fishNumber = els.length; fishIndex < fishNumber; fishIndex++) {
+          position = getRandomPosition(depthIndex);
+          els[fishIndex].setAttribute('style', 'top: ' + position.top + 'px; left: ' + position.left + 'px;');
+          fishesPositions[depthIndex].push(position);
+        }
+        fishes.push(els);
+      }
     }
-    Array.prototype.slice.call(fishes).forEach(setRandomPosition);
-    setInterval(function () {Array.prototype.slice.call(fishes).forEach(setRandomPosition);}, 70);
+
+    function getRandomPosition(depth) {
+      return {
+        top: Math.random() * (screen.height - sizes[depth]),
+        left: Math.random() * (screen.width - sizes[depth])
+      };
+    }
+
+    function moveRandomDirection() {
+      for (var depthIndex = 0, depthNumber = fishesPositions.length; depthIndex < depthNumber; depthIndex++) {
+        for(var fishIndex = 0, fishNumber = fishesPositions[depthIndex].length; fishIndex < fishNumber; fishIndex++) {
+          fishesPositions[depthIndex][fishIndex].top = fishesPositions[depthIndex][fishIndex].top + Math.random() * sizes[depthIndex] - sizes[depthIndex] / 2;
+          fishesPositions[depthIndex][fishIndex].left = fishesPositions[depthIndex][fishIndex].left + Math.random() * sizes[depthIndex] - sizes[depthIndex] / 2;
+          fishes[depthIndex][fishIndex].setAttribute('style', 'top: ' + fishesPositions[depthIndex][fishIndex].top + 'px; left: ' + fishesPositions[depthIndex][fishIndex].left + 'px;');
+        }
+      }
+    }
+    init();
+    setInterval(function () {
+      moveRandomDirection();
+    }, 70);
 
   </script>
 </body>
