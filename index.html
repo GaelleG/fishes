@@ -5,7 +5,12 @@
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <style type="text/css">
     body {
-      background-image: linear-gradient(to top, rgba(0,0,0,.6), transparent);
+      background-color: #000;
+      background-image: -webkit-linear-gradient(10deg, transparent, rgba(255,255,255,.2));
+      background-image: -moz-linear-gradient(10deg, transparent, rgba(255,255,255,.2));
+      background-image: -ms-linear-gradient(10deg, transparent, rgba(255,255,255,.2));
+      background-image: -o-linear-gradient(10deg, transparent, rgba(255,255,255,.2));
+      background-image: linear-gradient(10deg, transparent, rgba(255,255,255,.2));
     }
     .depth {
       position: absolute;
@@ -15,36 +20,29 @@
       right: 0;
       overflow: hidden;
     }
-    .depth:before {
-      content: '';
-      display: block;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background-color: rgba(0,123,255,.3);
-    }
     .fish {
       display: block;
       position: absolute;
-      background-color: rgba(0,0,0,.8);
+      background-color: rgba(255,255,255,.9);
       border-radius: 50%;
     }
     .depth .fish {
       width: 4px;
       height: 4px;
-      box-shadow: 0 0 8px #000;
+      box-shadow: 0 0 8px #fff;
+      background-color: rgba(255,255,255,.3);
     }
     .depth +.depth .fish {
       width: 7px;
       height: 7px;
-      box-shadow: 0 0 5px #000;
+      box-shadow: 0 0 5px #fff;
+      background-color: rgba(255,255,255,.6);
     }
     .depth + .depth + .depth .fish {
       width: 10px;
       height: 10px;
-      box-shadow: 0 0 2px #000;
+      box-shadow: 0 0 2px #fff;
+      background-color: rgba(255,255,255,.9);
     }
   </style>
 </head>
